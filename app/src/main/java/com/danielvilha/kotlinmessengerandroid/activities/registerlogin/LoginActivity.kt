@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.danielvilha.kotlinmessengerandroid.R
-import com.danielvilha.kotlinmessengerandroid.activities.messages.MainActivity
+import com.danielvilha.kotlinmessengerandroid.activities.messages.LatestMessageActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
@@ -16,6 +16,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        supportActionBar?.title = getString(R.string.title_activity_login)
 
         btn_login.setOnClickListener {
             performLogin()
@@ -44,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
 
                 Log.d(TAG, "Successfully logged in: ${it.result?.user?.uid}")
 
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, LatestMessageActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }

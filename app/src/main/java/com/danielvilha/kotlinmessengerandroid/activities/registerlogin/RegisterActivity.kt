@@ -9,8 +9,8 @@ import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
 import com.danielvilha.kotlinmessengerandroid.R
-import com.danielvilha.kotlinmessengerandroid.activities.messages.MainActivity
-import com.danielvilha.kotlinmessengerandroid.common.User
+import com.danielvilha.kotlinmessengerandroid.activities.messages.LatestMessageActivity
+import com.danielvilha.kotlinmessengerandroid.views.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -30,6 +30,8 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        supportActionBar?.title = getString(R.string.title_activity_create_account)
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
@@ -118,7 +120,7 @@ class RegisterActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 Log.d(TAG, "Finally we saved the user to Firebase Database")
 
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, LatestMessageActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }

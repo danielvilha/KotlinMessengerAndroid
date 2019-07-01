@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.danielvilha.kotlinmessengerandroid.R
-import com.danielvilha.kotlinmessengerandroid.common.User
+import com.danielvilha.kotlinmessengerandroid.views.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -18,6 +18,9 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.user_new_message_row.view.*
 
+/**
+ * Created by danielvilha on 2019-07-01
+ */
 class NewMessageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +48,7 @@ class NewMessageActivity : AppCompatActivity() {
 
                 adapter.setOnItemClickListener { item, view ->
                     val userItem = item as UserItem
-                    val intent = Intent(view.context, MessageActivity::class.java)
+                    val intent = Intent(view.context, ChatMessageActivity::class.java)
                     intent.putExtra(TAG, userItem.user)
                     startActivity(intent)
                 }

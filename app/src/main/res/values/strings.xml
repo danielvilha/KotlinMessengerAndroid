@@ -1,10 +1,13 @@
 <resources>
-    <string name="app_name">Kotlin Messenger Android</string>
+    <string name="app_name">Kotlin Messenger</string>
 
     <string name="title_activity_login">Login</string>
     <string name="title_activity_create_account">Create Account</string>
     <string name="title_activity_messenger">Messenger</string>
     <string name="title_activity_chat">Chat</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
     <string name="user_name">User Name</string>
     <string name="email">Email</string>
@@ -23,4 +26,7 @@
     <string name="nav_menu_new_message">NEW MESSAGE</string>
     <string name="enter_message">Enter Message</string>
     <string name="send">Send</string>
+
+    <string name="exit">Exit</string>
+    <string name="do_you_want_to_exit">Do you want to exit?</string>
 </resources>

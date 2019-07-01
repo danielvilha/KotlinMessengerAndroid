@@ -11,27 +11,18 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.messages.MessageActivity">
-        </activity>
-        <activity android:name=".activities.messages.NewMessageActivity">
-        </activity>
+        <activity android:name=".activities.messages.ChatMessageActivity"/>
+        <activity android:name=".activities.messages.NewMessageActivity"/>
         <activity
-                android:name=".activities.messages.MainActivity"
+                android:name=".activities.messages.LatestMessageActivity"
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-                android:name=".activities.registerlogin.LoginActivity"
-                android:label="@string/title_activity_login">
-        </activity>
-        <activity
-                android:name=".activities.registerlogin.RegisterActivity"
-                android:label="@string/title_activity_create_account">
-        </activity>
+        <activity android:name=".activities.registerlogin.LoginActivity"/>
+        <activity android:name=".activities.registerlogin.RegisterActivity"/>
     </application>
 
 </manifest>

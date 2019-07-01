@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.danielvilha.kotlinmessengerandroid.R
-import com.danielvilha.kotlinmessengerandroid.common.User
+import com.danielvilha.kotlinmessengerandroid.views.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
