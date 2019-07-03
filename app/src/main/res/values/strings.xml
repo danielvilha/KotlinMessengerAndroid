@@ -29,4 +29,7 @@
 
     <string name="exit">Exit</string>
     <string name="do_you_want_to_exit">Do you want to exit?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

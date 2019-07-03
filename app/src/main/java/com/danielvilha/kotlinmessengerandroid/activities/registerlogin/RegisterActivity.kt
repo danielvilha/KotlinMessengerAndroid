@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import com.danielvilha.kotlinmessengerandroid.R
 import com.danielvilha.kotlinmessengerandroid.activities.messages.LatestMessageActivity
 import com.danielvilha.kotlinmessengerandroid.views.User
@@ -37,11 +38,10 @@ class RegisterActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         btn_login.setOnClickListener {
-            val name = edt_name.text.toString()
             val email = edt_email.text.toString()
             val password = edt_password.text.toString()
 
-            createAccount(name, email, password)
+            createAccount(email, password)
         }
 
         btn_image.setOnClickListener {
@@ -71,11 +71,13 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun createAccount(name: String, email: String, password: String) {
+    private fun createAccount(email: String, password: String) {
         Log.d(TAG, "createAccount:$email")
         if (!validateForm()) {
             return
         }
+
+        progress(true)
 
         // [START create_user_with_email]
         auth.createUserWithEmailAndPassword(email, password)
@@ -88,6 +90,7 @@ class RegisterActivity : AppCompatActivity() {
             }
             .addOnFailureListener {
                 Log.w(TAG, "createUserWithEmail:failure", it)
+                progress()
                 Snackbar.make(edt_name, "Authentication failed.", Snackbar.LENGTH_LONG).show()
             }
         // [END create_user_with_email]
@@ -108,6 +111,9 @@ class RegisterActivity : AppCompatActivity() {
                     saveUserToFirebaseDatabase(it.toString())
                 }
             }
+            .addOnCanceledListener {
+                Log.d(TAG, "Error: ")
+            }
     }
 
     private fun saveUserToFirebaseDatabase(profileImageUrl: String) {
@@ -125,6 +131,7 @@ class RegisterActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             .addOnFailureListener {
+                progress()
                 Snackbar.make(edt_name, "User don't save: ${it.message}", Snackbar.LENGTH_LONG).show()
                 Log.d(TAG, "User don't save to Firebase Database: ${it.message}")
             }
@@ -169,6 +176,20 @@ class RegisterActivity : AppCompatActivity() {
         val matcher = pattern.matcher(email)
 
         return matcher.matches()
+    }
+
+    private fun progress(boolean: Boolean = false) {
+        when (boolean) {
+            true -> {
+                scrollView.visibility = View.GONE
+                progressBar.visibility = View.VISIBLE
+            }
+
+            false -> {
+                scrollView.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+            }
+        }
     }
 
     companion object {

@@ -14,8 +14,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_new_message" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/c9c1830c9682d90a675d566a1c687ec1.svg" />
+                            <entry key="outputName" value="ic_photo" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/ic_photo.svg" />
                           </map>
                         </option>
                       </PersistentState>

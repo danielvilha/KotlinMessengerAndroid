@@ -11,6 +11,9 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activities.registerlogin.LoginActivity"/>
+        <activity android:name=".activities.registerlogin.RegisterActivity"/>
+        <!--<activity android:name=".activities.messages.MainActivity"/>-->
         <activity android:name=".activities.messages.ChatMessageActivity"/>
         <activity android:name=".activities.messages.NewMessageActivity"/>
         <activity
@@ -18,11 +21,23 @@
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.registerlogin.LoginActivity"/>
-        <activity android:name=".activities.registerlogin.RegisterActivity"/>
+        <!--<activity-->
+                <!--android:name=".activities.messages.MainActivity"-->
+                <!--android:label="@string/app_name"-->
+                <!--android:theme="@style/AppTheme.NoActionBar">-->
+            <!--<meta-data-->
+                    <!--android:name="android.support.PARENT_ACTIVITY"-->
+                    <!--android:value=".activities.messages.MainActivity"/>-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
     </application>
 
 </manifest>

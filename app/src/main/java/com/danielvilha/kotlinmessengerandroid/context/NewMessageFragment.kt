@@ -6,26 +6,34 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.danielvilha.kotlinmessengerandroid.R
 import com.danielvilha.kotlinmessengerandroid.views.User
+import com.danielvilha.kotlinmessengerandroid.views.UserItem
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.activity_main.*
 
 import kotlinx.android.synthetic.main.fragment_new_message.*
+
+private const val ARG_PARAM = "param"
 
 /**
  * A fragment representing a list of Items.
  * Activities containing this fragment MUST implement the interface.
  */
 class NewMessageFragment : Fragment() {
+    private var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.let {
+            user = it.getParcelable(ARG_PARAM)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -34,6 +42,8 @@ class NewMessageFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        activity?.title = getString(R.string.select_user)
 
         fetchUsers()
     }
@@ -44,42 +54,40 @@ class NewMessageFragment : Fragment() {
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 val adapter = GroupAdapter<ViewHolder>()
+
                 p0.children.forEach {
-                    Log.d(TAG, "")
+                    Log.d(TAG, it.toString())
                     val user = it.getValue(User::class.java)
-                    adapter.add(UserItem())
+                    if (user != null)
+                        adapter.add(UserItem(user))
+                }
+
+                adapter.setOnItemClickListener { item, _ ->
+                    val userItem = item as UserItem
+                    activity?.supportFragmentManager?.beginTransaction()
+                        ?.replace(R.id.container, ChatMessageFragment.newInstance(userItem.user))
+                        ?.commit()
                 }
 
                 recycler.adapter = adapter
             }
 
-            override fun onCancelled(p0: DatabaseError) {
-
-            }
+            override fun onCancelled(p0: DatabaseError) { }
         })
     }
 
     companion object {
         private const val TAG = "NewMessageFragment"
-        const val ARG_PARAM = "arg_param"
 
         @JvmStatic
-        fun newInstance(param: Int) =
+        fun newInstance(user: User) =
             NewMessageFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(ARG_PARAM, param)
+                    putParcelable(ARG_PARAM, user)
                 }
             }
-    }
-}
 
-class UserItem: Item<ViewHolder>() {
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        @JvmStatic
+        fun newInstance() = NewMessageFragment().apply {  }
     }
-
-    override fun getLayout(): Int {
-        return R.layout.user_new_message_row
-    }
-
 }

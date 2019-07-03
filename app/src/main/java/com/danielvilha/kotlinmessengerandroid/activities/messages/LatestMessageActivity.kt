@@ -24,7 +24,6 @@ import kotlinx.android.synthetic.main.activity_latest_message.*
  * Created by danielvilha on 2019-07-01
  */
 class LatestMessageActivity : AppCompatActivity() {
-
     private var adapter = GroupAdapter<ViewHolder>()
     private val latestMessageMap = HashMap<String, ChatMessage>()
 
@@ -138,6 +137,6 @@ class LatestMessageActivity : AppCompatActivity() {
 
     companion object {
         var currentUser: User? = null
-        val TAG = "LatestMessageActivity"
+        const val TAG = "LatestMessageActivity"
     }
 }

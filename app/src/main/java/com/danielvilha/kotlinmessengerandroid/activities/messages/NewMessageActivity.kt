@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.danielvilha.kotlinmessengerandroid.R
 import com.danielvilha.kotlinmessengerandroid.views.User
+import com.danielvilha.kotlinmessengerandroid.views.UserItem
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -28,6 +29,8 @@ class NewMessageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_new_message)
 
         supportActionBar?.title = getString(R.string.select_user)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         fetchUsers()
     }
@@ -56,25 +59,11 @@ class NewMessageActivity : AppCompatActivity() {
                 recycler.adapter = adapter
             }
 
-            override fun onCancelled(p0: DatabaseError) {
-
-            }
+            override fun onCancelled(p0: DatabaseError) { }
         })
     }
 
     companion object {
         const val TAG = "NewMessageActivity"
-    }
-}
-
-class UserItem(val user: User): Item<ViewHolder>() {
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.txv_name.text = user.username
-
-        Picasso.get().load(user.profileImageUrl).into(viewHolder.itemView.img_avatar)
-    }
-
-    override fun getLayout(): Int {
-        return R.layout.user_new_message_row
     }
 }

@@ -46,7 +46,9 @@ class ChatMessageFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_chat_message, container, false)
     }
 
-    init {
+    override fun onStart() {
+        super.onStart()
+
         activity?.title = toUser?.username
 
         recycler.adapter = adapter

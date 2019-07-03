@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.danielvilha.kotlinmessengerandroid.R
 import com.danielvilha.kotlinmessengerandroid.activities.messages.LatestMessageActivity
 import com.google.android.material.snackbar.Snackbar
@@ -40,8 +41,11 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
+        progress(true)
+
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
+                progress(false)
                 if (!it.isSuccessful) return@addOnCompleteListener
 
                 Log.d(TAG, "Successfully logged in: ${it.result?.user?.uid}")
@@ -51,8 +55,23 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             .addOnFailureListener {
+                progress(false)
                 Snackbar.make(edt_email, "Failed to login: ${it.message}", Snackbar.LENGTH_LONG).show()
             }
+    }
+
+    private fun progress(boolean: Boolean) {
+        when (boolean) {
+            true -> {
+                scrollView.visibility = View.GONE
+                progressBar.visibility = View.VISIBLE
+            }
+
+            false -> {
+                scrollView.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+            }
+        }
     }
 
     companion object {

@@ -31,6 +31,8 @@ class ChatMessageActivity : AppCompatActivity() {
 
         toUser = intent.getParcelableExtra<User>(NewMessageActivity.TAG)
         supportActionBar?.title = toUser?.username
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         recycler.adapter = adapter
 
