@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/KotlinMessengerAndroid.iml" filepath="$PROJECT_DIR$/KotlinMessengerAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="kotlin-messenger-android/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-messenger-android.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-messenger-android.iml" group="kotlin-messenger-android" />
     </modules>
   </component>
 </project>

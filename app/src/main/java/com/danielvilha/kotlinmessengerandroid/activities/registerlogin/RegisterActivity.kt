@@ -139,7 +139,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun validateForm(): Boolean {
         var valid = true
-
         val email = edt_email.text.toString()
         if (TextUtils.isEmpty(email) && isEmailValid(email)) {
             edt_email.error = "Required."
@@ -160,7 +159,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun isPasswordValid(password: String): Boolean {
-
         val pattern: Pattern
         val matcher: Matcher
         val passwordPattern = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$"
